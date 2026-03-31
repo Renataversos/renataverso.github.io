@@ -5,55 +5,218 @@ import { useData } from '../context/DataContext';
 export const MediaKit: React.FC = () => {
   const { data } = useData();
 
+  const demographicData = {
+    gender: [
+      { label: 'Mulher', percentage: 85, icon: '♀' },
+      { label: 'Homem', percentage: 15, icon: '♂' }
+    ],
+    age: [
+      { label: '25-35', percentage: 45 },
+      { label: '18-24', percentage: 35 },
+      { label: '35-44', percentage: 20 }
+    ]
+  };
+
+  const stats = [
+    { value: '250', label: 'Média de\nSeguidores' },
+    { value: '12.5K', label: 'Média de\nalcance' },
+    { value: '43.2K', label: 'Média de\nInterações' },
+    { value: '19.8%', label: 'Média de\nEngajamento' }
+  ];
+
+  const portfolioImages = [
+    'https://i.imgur.com/1.jpg',
+    'https://i.imgur.com/2.jpg',
+    'https://i.imgur.com/3.jpg',
+    'https://i.imgur.com/4.jpg',
+    'https://i.imgur.com/5.jpg',
+    'https://i.imgur.com/6.jpg'
+  ];
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="px-6 pb-8 pt-[240px]"
+      className="w-full bg-[#fcf7f9] min-h-screen"
     >
-      <div className="border-y-2 border-[#ea92be] py-2 mb-8 bg-[#fcf7f9]">
-        <h2 className="font-serif text-2xl font-bold text-magenta text-center">
-          Mídia Kit
-        </h2>
-      </div>
-
-      <div className="bg-[#fcf7f9] rounded-3xl p-6 shadow-md border border-magenta-light relative mb-8">
-        <div className="flex flex-col items-center gap-4 mb-6">
-          <div className="w-24 h-32 bg-gray-200 arch-image overflow-hidden shadow-lg border-4 border-white">
-            <img src={data.settings.profileImage} alt="Renata Lugon" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-          </div>
-          <div className="text-center">
-            <h3 className="font-serif text-2xl font-bold text-magenta">Renata Lugon</h3>
-            <p className="text-sm text-gray-500">Vídeos literários</p>
-          </div>
-        </div>
+      {/* Main Content */}
+      <div className="px-6 pb-12 pt-[280px] max-w-6xl mx-auto">
         
-        <div className="mb-6">
-          <h4 className="font-bold text-gray-800 mb-2 text-center">Sobre mim</h4>
-          <p className="text-sm text-gray-600 leading-relaxed text-center">
-            {data.settings.bio}
-          </p>
-        </div>
-      </div>
+        {/* Hero Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-col md:flex-row gap-8 mb-12 items-start md:items-center"
+        >
+          {/* Profile Image */}
+          <div className="flex-shrink-0">
+            <div className="w-48 h-56 rounded-[40px] border-4 border-magenta overflow-hidden shadow-lg">
+              <img 
+                src={data.settings.profileImage} 
+                alt="Renata Lugon" 
+                className="w-full h-full object-cover" 
+                referrerPolicy="no-referrer" 
+              />
+            </div>
+          </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-8">
-        <div className="bg-[#fcf7f9] p-4 rounded-2xl shadow-sm border border-magenta-light text-center">
-          <h4 className="text-3xl font-bold text-magenta mb-1">150k</h4>
-          <p className="text-xs text-gray-500 uppercase tracking-wider">Seguidores</p>
-        </div>
-        <div className="bg-[#fcf7f9] p-4 rounded-2xl shadow-sm border border-magenta-light text-center">
-          <h4 className="text-3xl font-bold text-magenta mb-1">12%</h4>
-          <p className="text-xs text-gray-500 uppercase tracking-wider">Crescimento</p>
-        </div>
-        <div className="bg-[#fcf7f9] p-4 rounded-2xl shadow-sm border border-magenta-light text-center">
-          <h4 className="text-3xl font-bold text-magenta mb-1">8.5%</h4>
-          <p className="text-xs text-gray-500 uppercase tracking-wider">Engajamento</p>
-        </div>
-        <div className="bg-[#fcf7f9] p-4 rounded-2xl shadow-sm border border-magenta-light text-center">
-          <h4 className="text-3xl font-bold text-magenta mb-1">350+</h4>
-          <p className="text-xs text-gray-500 uppercase tracking-wider">Posts</p>
-        </div>
+          {/* Name and Bio */}
+          <div className="flex-1">
+            <motion.h1 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="font-serif text-5xl md:text-6xl font-bold text-magenta mb-2 leading-tight"
+            >
+              Renata<br />Lugon
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-magenta text-lg font-semibold mb-6"
+            >
+              Vídeos literários
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="bg-white rounded-2xl p-6 border border-magenta/20"
+            >
+              <h3 className="font-bold text-magenta text-lg mb-3">Sobre mim</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Criadora de conteúdo literário que compartilha leituras, indicações e unboxings de forma autêntica, criativa e apaixonada.
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Demographic Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mb-12"
+        >
+          <h2 className="font-serif text-3xl font-bold text-magenta mb-8">Audiência demográfica</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            {/* Gender */}
+            <div className="bg-white rounded-2xl p-8 border border-magenta/20">
+              <h3 className="font-bold text-magenta text-xl mb-6">Gênero</h3>
+              <div className="flex items-center justify-around">
+                {demographicData.gender.map((item, idx) => (
+                  <div key={idx} className="text-center">
+                    <div className="text-4xl mb-2">{item.icon}</div>
+                    <div className="text-3xl font-bold text-magenta mb-1">{item.percentage}%</div>
+                    <div className="text-sm text-gray-600">{item.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Age */}
+            <div className="bg-white rounded-2xl p-8 border border-magenta/20">
+              <h3 className="font-bold text-magenta text-xl mb-6">Idade</h3>
+              <div className="space-y-4">
+                {demographicData.age.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-4">
+                    <span className="text-sm font-semibold text-gray-700 w-12">{item.label}</span>
+                    <div className="flex-1 bg-gray-200 rounded-full h-3 overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: `${item.percentage}%` }}
+                        transition={{ delay: 0.8 + idx * 0.1, duration: 0.8 }}
+                        className="h-full bg-magenta rounded-full"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Statistics Cards */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+        >
+          {stats.map((stat, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.9 + idx * 0.1 }}
+              className="bg-white rounded-2xl p-6 border-2 border-magenta text-center"
+            >
+              <div className="text-3xl font-bold text-magenta mb-2">{stat.value}</div>
+              <div className="text-xs text-gray-600 whitespace-pre-line leading-tight">{stat.label}</div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Portfolio Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1 }}
+          className="mb-12"
+        >
+          <h2 className="font-serif text-3xl font-bold text-magenta mb-6">Portfólio</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {portfolioImages.map((image, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.1 + idx * 0.05 }}
+                className="aspect-square rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+              >
+                <img 
+                  src={image} 
+                  alt={`Portfolio ${idx + 1}`} 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Contact Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2 }}
+          className="bg-white rounded-2xl p-8 border border-magenta/20 text-center mb-8"
+        >
+          <h2 className="font-serif text-3xl font-bold text-magenta mb-8">Contatos</h2>
+          <div className="space-y-4">
+            <a 
+              href="mailto:renataverso13@gmail.com"
+              className="flex items-center justify-center gap-3 text-magenta hover:text-magenta/80 transition-colors"
+            >
+              <span className="text-2xl">✉</span>
+              <span className="font-semibold">renataverso13@gmail.com</span>
+            </a>
+            <a 
+              href="https://instagram.com/renataverso"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 text-magenta hover:text-magenta/80 transition-colors"
+            >
+              <span className="text-2xl">📱</span>
+              <span className="font-semibold">@renataverso</span>
+            </a>
+          </div>
+        </motion.div>
       </div>
     </motion.div>
   );
