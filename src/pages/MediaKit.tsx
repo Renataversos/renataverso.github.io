@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
 
 export const MediaKit: React.FC = () => {
   const { data } = useData();
+  const [stats] = useState({
+    followers: 250,
+    reach: 12500,
+    interactions: 43200,
+    engagementRate: 19.8
+  });
 
   const demographicData = {
     gender: [
@@ -17,7 +23,7 @@ export const MediaKit: React.FC = () => {
     ]
   };
 
-  const stats = [
+  const statCards = [
     { value: '250', label: 'Média de\nSeguidores' },
     { value: '12.5K', label: 'Média de\nalcance' },
     { value: '43.2K', label: 'Média de\nInterações' },
@@ -25,12 +31,12 @@ export const MediaKit: React.FC = () => {
   ];
 
   const portfolioImages = [
-    'https://i.imgur.com/1.jpg',
-    'https://i.imgur.com/2.jpg',
-    'https://i.imgur.com/3.jpg',
-    'https://i.imgur.com/4.jpg',
-    'https://i.imgur.com/5.jpg',
-    'https://i.imgur.com/6.jpg'
+    'https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400&auto=format&fit=crop'
   ];
 
   return (
@@ -149,7 +155,7 @@ export const MediaKit: React.FC = () => {
           transition={{ delay: 0.8 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
         >
-          {stats.map((stat, idx) => (
+          {statCards.map((stat, idx) => (
             <motion.div 
               key={idx}
               initial={{ opacity: 0, scale: 0.9 }}
